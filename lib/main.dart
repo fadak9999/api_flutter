@@ -1,11 +1,6 @@
-import 'package:api_flutter/Api.dart';
-import 'package:api_flutter/Get_Api_user_.dart';
-import 'package:api_flutter/Get_photos_Api_.dart';
-import 'package:api_flutter/get_data.dart';
-import 'package:api_flutter/post.dart';
-import 'package:api_flutter/post_photos.dart';
-import 'package:api_flutter/post_user.dart';
-import 'package:api_flutter/test.dart';
+import 'package:api_flutter/%D8%A7%D9%88%D8%A7%D9%85%D8%B1%20%D8%A7%D8%AE%D8%B1%D9%89.dart';
+import 'package:api_flutter/%D9%86%D8%B5%D9%8A%D8%AD%D8%A9.dart';
+import 'package:api_flutter/GET/API_cats_get.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: PostUser(),
+      home: GetAdvice(),
     );
   }
 }

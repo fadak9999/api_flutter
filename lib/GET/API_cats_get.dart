@@ -1,25 +1,28 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 
-class get_potos extends StatefulWidget {
-  const get_potos({super.key});
+class Api_cats extends StatefulWidget {
+  const Api_cats({super.key});
 
   @override
-  State<get_potos> createState() => get_potosState();
+  State<Api_cats> createState() => _Api_catsState();
 }
 
-class get_potosState extends State<get_potos> {
-  List photos = [];
+class _Api_catsState extends State<Api_cats> {
+  //
 
-  Future GET_data_photos() async {
-    String url = "https://jsonplaceholder.typicode.com/photos";
+  List cats = [];
+
+  Future GET_data_cats() async {
+    String url = "https://api.thecatapi.com/v1/images/search";
     var response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
       var responsebody = convert.jsonDecode(response.body);
       setState(() {
-        photos = responsebody;
+        cats = responsebody;
       });
       print(responsebody);
     } else {
@@ -30,46 +33,39 @@ class get_potosState extends State<get_potos> {
   @override
   void initState() {
     super.initState();
-    GET_data_photos();
+    GET_data_cats();
   }
 
+  //
   @override
   Widget build(BuildContext context) {
-    ///--
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.purple[800],
+        backgroundColor: const Color.fromARGB(255, 165, 159, 169),
         centerTitle: true,
         title: const Text(
           "API",
-          style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView.builder(
-          itemCount: photos.length,
+          itemCount: cats.length,
           itemBuilder: (context, i) {
             return Column(
               children: [
-                Text(
-                  photos[i]['title'],
-                  style: const TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.purple),
+                const Center(
+                  child: Text(
+                    "Homeless cats  ᓚᘏᗢ",
+                    style: TextStyle(fontSize: 30),
+                  ),
                 ),
                 Container(
                   margin: const EdgeInsets.all(20),
                   height: 200,
                   width: 200,
-                  child: Image.network(photos[i]['url']), // عرض الصورة
-                ),
-                Container(
-                  height: 200,
-                  width: 200,
-                  child: Image.network(
-                      photos[i]['thumbnailUrl']), // عرض الصورة المصغرة
+                  child: Image.network(cats[i]['url']), // عرض الصورة
                 ),
               ],
             );
